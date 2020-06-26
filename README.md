@@ -1,2 +1,2 @@
 # Soldier76_And_Genji
- an overwatch clone with network
+ A networked Soldier76 vs Genji overwatch clone in Unity3D
