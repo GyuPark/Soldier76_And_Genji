@@ -4,9 +4,11 @@ using UnityEngine;
 
 namespace Gyu
 {
+    /// <summary>
+    /// 화면상의 표적을 위한 class 자료형
+    /// </summary>
     public class ScreenTarget
     {
-        //필요한 속성들을 이렇게 나열해 놓는다...
         public Vector2 screenPosition = Vector2.zero; //화면상의 좌표
         public float distanceFromCenter = 0.0f; //중심으로부터의 거리
         public GameObject targetObject = null; //게임오브젝트
@@ -26,16 +28,12 @@ namespace Gyu
         float mActiveRadius = .2f;
 
         #region Main
-        void Awake()
-        {
-
-        }
-
         void Update()
         {
-            //매 프레임마다 
+            //Scene에 존재하는 Enemy들을 ScreenTargets으로 치환하여 준다.
             ScreenTarget[] screenTargets = TrackAllTargets(mTargets);
 
+            //원 안에서 감지되는 ScreenTargets들만 추적한다.
             screenTargets = GetValidTargets(screenTargets);
 
             for (int i = 0; i < mReticles.Count; i++)
@@ -52,6 +50,7 @@ namespace Gyu
                 }
             }
 
+            //원 중심부에서 가장 가까운 표적을 찾는다.
             closestTarget = GetClosestTarget(screenTargets);
 
             Vector2 centerReticlePosition = closestTarget != null ? closestTarget.screenPosition : new Vector2(Screen.width / 2, Screen.height / 2);

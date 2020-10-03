@@ -42,7 +42,7 @@ namespace Gyu
         }
 
         /// <summary>
-        /// geometry vector from a to b
+        /// 방향 벡터를 구하는 함수
         /// </summary>
         /// <param name="a">origin</param>
         /// <param name="b">destination</param>
@@ -54,6 +54,11 @@ namespace Gyu
             return vector;
         }
 
+        /// <summary>
+        /// 월드공간 벡터를 로컬공간 벡터로 치환하는 함수
+        /// </summary>
+        /// <param name="vector">기하 벡터</param>
+        /// <returns></returns>
         Vector3 WorldToLocal(Vector3 vector)
         {
             Vector3 newVector = Vector3.zero;
@@ -61,6 +66,11 @@ namespace Gyu
             return newVector.normalized;
         }
 
+        /// <summary>
+        /// 3차원 벡터를 화면에 표시하기 위해 2차원 벡터로 치환하는 함수
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
         Vector2 ConvertToVector2(Vector3 vector)
         {
             Vector2 v = Vector2.zero;
@@ -70,13 +80,24 @@ namespace Gyu
             return v;
         }
 
+        /// <summary>
+        /// 2차원 백터를 degrees 각도로 치환하는 함수
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
         float GetAngleFromVector2(Vector2 vector)
         {
             float angle = 0;
+            //radian → degree로 치환
             angle = Mathf.Atan2(vector.y, vector.x) * 180f / Mathf.PI;
             return angle;
         }
 
+        /// <summary>
+        /// degree 각도를 Z축 회전값으로 치환
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <returns></returns>
         float ConvertAngleToZRot(float angle)
         {
             float zRot = 0f;
